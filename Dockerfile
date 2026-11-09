@@ -14,7 +14,7 @@ FROM tomcat:9.0-jre17-temurin
 ENV PORT=10000
 RUN rm -rf /usr/local/tomcat/webapps/* \
     && mkdir -p /usr/local/tomcat/webapps/ROOT/WEB-INF/classes \
-    && sed -i 's/port="8080" protocol="HTTP\/1.1"/port="${PORT}" maxPostSize="4096" maxParameterCount="16" protocol="HTTP\/1.1"/' /usr/local/tomcat/conf/server.xml
+    && sed -i 's/port="8080" protocol="HTTP\/1.1"/port="${PORT}" maxPostSize="4096" protocol="HTTP\/1.1"/' /usr/local/tomcat/conf/server.xml
 COPY --from=build /source/web/ /usr/local/tomcat/webapps/ROOT/
 COPY --from=build /source/out/ /usr/local/tomcat/webapps/ROOT/WEB-INF/classes/
 COPY --from=build /source/scripts/start.sh /usr/local/bin/meridian-start
