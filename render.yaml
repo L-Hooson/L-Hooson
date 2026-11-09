@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: meridian-operations-demo
+    runtime: docker
+    plan: free
+    region: frankfurt
+    healthCheckPath: /api/health
+    autoDeployTrigger: commit
+    envVars:
+      - key: PORT
+        value: "10000"
